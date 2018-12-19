@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+</head>
+<body>
+<input type="text" placeholder="用户名" id="username" value="">
+<input type="password" placeholder="密码" id="password" value="">
+<input type="text" placeholder="邮箱" id="email" value="">
+<input type="text" placeholder="手机号码" id="tel" value="">
+<a id="btn" href="javascript:void(0)">提交</a>
+
+</body>
+<script>
+    $(function(){
+        var uname = $.cookie('username');
+        if(uname){
+            alert('您已登录');
+            location.href = "main.html";
+        }else{
+            $('#btn').on('click',function(){
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var email = $('#email').val();
+                var tel = $('#tel').val();
+                if(username.length == 0){
+                    alert('username 必选填写');
+                    return false;
+                }
+                if(password.length == 0){
+                    alert('password 必选填写');
+                    return false;
+                }
+                if(email.length == 0){
+                    alert('email 必选填写');
+                    return false;
+                }
+                if(tel.length == 0){
+                    alert('tel 必选填写');
+                    return false;
+                }
+                $.ajax({
+                    type : 'POST',
+                    url : 'reg.php',
+                    data :{username:username,password:password,email:email,tel:tel},
+                    dataType: 'json',
+                    success:function (result) {
+                        console.log(result);
+                        if(result.status == true){
+                            alert('注册成功');
+                            $.cookie('username' , result.datas.username);
+                            location.href = "main.html";
+                        }else{
+                            alert(result.error);
+                        }
+                    }
+                })
+            })
+        }
+    })
+</script>
+
+</html>

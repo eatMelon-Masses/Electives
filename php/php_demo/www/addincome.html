@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+</head>
+<body>
+<input type="text" id="type" placeholder="支出类别" value="">
+<input type="text" id="money" placeholder="金额" value="">
+<input type="text" id="remark" placeholder="备注" value="">
+<a id="btn" href="javascript:void(0)">提交</a>
+</body>
+<script>
+    $(function(){
+            $('#btn').on('click',function(){
+                var type = $('#type').val();
+                var money = $('#money').val();
+				var remark = $('#remark').val();
+                if(type.length == 0){
+                    alert('金额类型 必选填写');
+                    return false;
+                }
+                if(money.length == 0){
+                    alert('money 必选填写');
+                    return false;
+                }
+                $.ajax({
+                    type : 'POST',
+                    url : 'incomeadd.php',
+                    data :{type:type,money:money,remark:remark},
+                    dataType: 'json',
+                    success:function (result) {
+                        if(result.status == true){
+                            alert('添加成功');
+                            location.href = "main.html";
+                        }else{
+                            alert(result.error);
+                        }
+                    }
+                })
+            })
+        
+    })
+</script>
+
+</html>
