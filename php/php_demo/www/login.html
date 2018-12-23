@@ -8,8 +8,8 @@
     <script type="text/javascript" src="jquery.cookie.js"></script>
 </head>
 <body>
-<input type="text" id="username" placeholder="用户名" value="">
-<input type="password" id="password" placeholder="密码" value="">
+<input type="text" id="username" placeholder="用户名" value=""><br>
+<input type="password" id="password" placeholder="密码" value=""><br>
 <a id="btn" href="javascript:void(0)">提交</a>
 
 </body>
@@ -18,7 +18,7 @@
         var uname = $.cookie("username");
         if(uname){
             alert('您已登录');
-            location.href = "main.html";
+            location.href = "1main.html";
         }else{
             $('#btn').on('click',function(){
                 var username = $('#username').val();
@@ -40,7 +40,7 @@
                         if(result.status == true){
                             alert('登录成功');
                             $.cookie('username' , result.datas.username);
-                            location.href = "main.html";
+                            location.href = "main1.html";
                         }else{
                             alert(result.error);
                         }

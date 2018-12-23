@@ -8,10 +8,10 @@
     <script type="text/javascript" src="jquery.cookie.js"></script>
 </head>
 <body>
-<input type="text" placeholder="用户名" id="username" value="">
-<input type="password" placeholder="密码" id="password" value="">
-<input type="text" placeholder="邮箱" id="email" value="">
-<input type="text" placeholder="手机号码" id="tel" value="">
+<input type="text" placeholder="用户名" id="username" value=""><br>
+<input type="password" placeholder="密码" id="password" value=""><br>
+<input type="text" placeholder="邮箱" id="email" value=""><br>
+<input type="text" placeholder="手机号码" id="tel" value=""><br>
 <a id="btn" href="javascript:void(0)">提交</a>
 
 </body>
@@ -20,7 +20,7 @@
         var uname = $.cookie('username');
         if(uname){
             alert('您已登录');
-            location.href = "main.html";
+            location.href = "main1.html";
         }else{
             $('#btn').on('click',function(){
                 var username = $('#username').val();
@@ -49,11 +49,11 @@
                     data :{username:username,password:password,email:email,tel:tel},
                     dataType: 'json',
                     success:function (result) {
-                        console.log(result);
+                       
                         if(result.status == true){
                             alert('注册成功');
-                            $.cookie('username' , result.datas.username);
-                            location.href = "main.html";
+                            
+                            location.href = "main1.html";
                         }else{
                             alert(result.error);
                         }

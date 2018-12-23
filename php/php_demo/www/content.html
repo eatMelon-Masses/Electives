@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>content</title>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+</head>
+<body onload="loadData()">
+    <table id="tbIncome" border="1">
+        <tr>
+            <th>收入</th>
+            <th>元</th>
+            <th>时间</th>
+        </tr>
+
+    </table>
+    <table id="tbPayment"border="1">
+    <tr>
+        <th>支出</th>
+        <th>元</th>
+        <th>时间</th>
+    </tr>
+    <tr>
+        <td>食品</td>
+        <td>200</td>
+        <td>2018/12/22 14:00:00</td>
+    </tr>
+    </table>
+</body>
+
+<script>
+    function loadData(){
+                $.get("/allincome.php",function(data,status){
+                    console.log(data);
+                    var jsonData=JSON.parse(data);
+                    var temp=JSON.parse(jsonData.datas);
+                    var tbIncome=document.getElementById('tbIncome');
+                    var count=0;
+                    console.log(temp[0][0]);
+                    for(count;count<=temp.length-1;count++){
+                        var tr=tbIncome.insertRow(count+1);
+                        tr.insertCell().innerHTML=temp[count].type;
+                        tr.insertCell().innerHTML=temp[count].money;
+                        tr.insertCell().innerHTML=temp[count].createTime;
+                    }
+                })
+            }
+</script>
+
+
+
+   </html>

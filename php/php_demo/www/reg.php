@@ -2,11 +2,11 @@
 require_once 'function_core.php';
 require_once 'db.php';
 session_start();
-$username = trim($_POST['username']);
-$password = trim(md5($_POST['password']));
-$email = trim($_POST['email']);
-$tel = trim($_POST['tel']);
-$sql = "insert into db_user(username,password,email,tel) VALUES ('".$username."','".$password."','".$email."','".$tel."')";
+$username = mysqli_real_escape_string($connect,trim($_POST['username']));
+$password = mysqli_real_escape_string($connect,trim(md5($_POST['password'])));
+$email = mysqli_real_escape_string($connect,trim($_POST['email']));
+$tel = mysqli_real_escape_string($connect,trim($_POST['tel']));
+$sql = "insert into db_user(username,password,email,tel) VALUES ('$username','$password.','$email','$tel')";
 $result = mysqli_query($connect,$sql);
 $core = new function_core();
 
