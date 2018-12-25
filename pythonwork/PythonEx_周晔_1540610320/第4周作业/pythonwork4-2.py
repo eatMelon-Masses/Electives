@@ -24,7 +24,7 @@ with open("唐诗三百首.txt","r") as fileIn ,open("芳华字频.txt",'w') as 
     #   x[1]是按字频排序，x[0]则是按字排序
     lstWords = sorted(word_dict.items(), key=lambda x:x[1],  reverse=True) 
    
-    # 输出结果 (前100)
+    # 输出结果 (前20)
     print ('字符\t字频')
     print ('=============')
     for e in lstWords[:20]:
